@@ -136,13 +136,13 @@ SCREEN_CONFIG = {
     # Region donde aparecen las cartas del rival cuando las juega
     # Formato: (x, y, width, height)
     # Ajustado para tu pantalla - Clash Royale esta a la derecha
-    "capture_region": (1480, 30, 440, 1020),  # Solo la ventana del juego (incluye cartas)
+    "capture_region": (343, 28, 557, 1000),  # Solo la ventana del juego (incluye cartas)
 
     # Zona de la arena donde detectar cartas jugadas (relativo a capture_region)
-    "arena_top": 80,        # Y superior de la arena
-    "arena_bottom": 550,    # Y inferior de la arena
-    "arena_left": 10,       # X izquierdo de la arena
-    "arena_right": 430,     # X derecho de la arena
+    "arena_top": 120,        # Y superior de la arena
+    "arena_bottom": 650,    # Y inferior de la arena
+    "arena_left": 27,       # X izquierdo de la arena
+    "arena_right": 529,     # X derecho de la arena
 
     # Tamano esperado de las cartas en el juego (para template matching)
     "card_width": 65,
