@@ -148,8 +148,8 @@ SCREEN_CONFIG = {
     "card_width": 65,
     "card_height": 80,
 
-    # FPS de captura
-    "capture_fps": 5,
+    # FPS de captura (mayor = mas responsivo pero mas CPU)
+    "capture_fps": 10,
 }
 
 # Umbral de confianza para deteccion de cartas (0.0 - 1.0)

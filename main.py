@@ -91,7 +91,7 @@ class ClashRoyaleTracker:
         print("Reiniciando tracker...")
         self.tracker.reset()
         if self.detector:
-            self.detector.clear_cooldown()
+            self.detector.reset_match()
 
     def set_elixir_mode(self, mode):
         """Cambia el modo de elixir"""
@@ -107,8 +107,8 @@ class ClashRoyaleTracker:
 
     def _detection_loop(self):
         """Loop de deteccion de cartas con Gemini (corre en hilo separado)"""
-        # Gemini tiene rate limits, asi que detectamos cada 3 segundos
-        detection_interval = 3.0
+        # Loop rapido - el detector tiene su propio sistema de movimiento y cooldown
+        loop_interval = 0.2  # 5 FPS para detectar movimiento
 
         while self.running:
             start_time = time.time()
@@ -117,23 +117,21 @@ class ClashRoyaleTracker:
                 # Capturar pantalla
                 frame = self.capture.capture()
 
-                # Detectar cartas con Gemini
+                # Detectar cartas (el detector maneja movimiento + cooldown internamente)
                 detections = self.detector.detect_cards(frame)
 
-                # Procesar detecciones
+                # Procesar detecciones nuevas
                 for det in detections:
                     card_name = det["card"]
-                    print(f"Gemini detecto: {card_name}")
                     self.tracker.card_detected(card_name)
-                    self._update_gui()
 
             except Exception as e:
                 print(f"Error en deteccion: {e}")
 
             # Esperar hasta el siguiente ciclo
             elapsed = time.time() - start_time
-            if elapsed < detection_interval:
-                time.sleep(detection_interval - elapsed)
+            if elapsed < loop_interval:
+                time.sleep(loop_interval - elapsed)
 
     def _schedule_ui_update(self):
         """Programa actualizaciones periodicas de la UI"""
