@@ -13,7 +13,7 @@ import numpy as np
 from config import CARDS
 
 # Configurar API de Gemini
-GEMINI_API_KEY = "AIzaSyC1d8ZSPwksKnviNUqGJZWtsNmbF54ohyg"
+GEMINI_API_KEY = "AIzaSyD67WKSUPaYe68pDgUrpMDymIQUsGbabRM"
 
 class GeminiCardDetector:
     """
