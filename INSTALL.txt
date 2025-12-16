@@ -1,0 +1,166 @@
+================================================================================
+            CLASH ROYALE TRACKER - GUIA DE INSTALACION
+================================================================================
+
+Esta guia te ayudara a instalar y ejecutar el tracker paso a paso.
+No necesitas experiencia previa en programacion.
+
+--------------------------------------------------------------------------------
+PASO 1: INSTALAR PYTHON
+--------------------------------------------------------------------------------
+
+1. Ve a https://www.python.org/downloads/
+2. Descarga Python 3.11 o superior (el boton amarillo grande)
+3. Ejecuta el instalador
+4. MUY IMPORTANTE: Marca la casilla "Add Python to PATH" al inicio
+5. Haz clic en "Install Now"
+6. Espera a que termine y cierra el instalador
+
+Para verificar que se instalo correctamente:
+- Abre CMD (tecla Windows + escribe "cmd" + Enter)
+- Escribe: python --version
+- Deberia mostrar algo como "Python 3.11.x"
+
+--------------------------------------------------------------------------------
+PASO 2: INSTALAR DEPENDENCIAS
+--------------------------------------------------------------------------------
+
+1. Abre CMD (tecla Windows + escribe "cmd" + Enter)
+2. Navega a la carpeta del proyecto:
+   cd C:\ruta\a\clash_royale_tracker
+
+3. Instala las dependencias:
+   pip install -r requirements.txt
+
+Esto instalara:
+- opencv-python (para deteccion de imagenes)
+- mss (para captura de pantalla)
+- Pillow (para procesar imagenes)
+- numpy (para calculos)
+
+--------------------------------------------------------------------------------
+PASO 3: AGREGAR IMAGENES DE CARTAS (OPCIONAL PARA DETECCION AUTOMATICA)
+--------------------------------------------------------------------------------
+
+Para que la deteccion automatica funcione, necesitas imagenes de las cartas.
+
+Opcion A - Capturas propias (recomendado):
+1. Abre Clash Royale PC
+2. Ve a tu coleccion de cartas
+3. Toma capturas de pantalla de cada carta
+4. Recorta cada carta (solo el icono, ~64x76 pixeles)
+5. Guarda cada imagen en la carpeta "cards/" con el nombre correcto
+
+Nombres de archivo ejemplo:
+- cards/knight.png
+- cards/fireball.png
+- cards/hog_rider.png
+- cards/golem.png
+(usa guion bajo para nombres de dos palabras)
+
+Opcion B - Solo modo manual:
+Si no quieres configurar la deteccion automatica, puedes usar el tracker
+en modo manual, donde tu marcas las cartas que ves jugar.
+
+--------------------------------------------------------------------------------
+PASO 4: EJECUTAR EL TRACKER
+--------------------------------------------------------------------------------
+
+1. Abre CMD
+2. Navega a la carpeta:
+   cd C:\ruta\a\clash_royale_tracker
+
+3. Ejecuta el programa:
+
+   - Modo normal (con deteccion):
+     python main.py
+
+   - Modo solo manual (sin deteccion):
+     python main.py --manual
+
+   - Calibrar region de pantalla:
+     python main.py --calibrate
+
+--------------------------------------------------------------------------------
+PASO 5: USAR EL TRACKER
+--------------------------------------------------------------------------------
+
+1. Abre Clash Royale PC
+2. Ejecuta el tracker (python main.py)
+3. Posiciona la ventana del tracker donde puedas verla
+4. Cuando empiece una partida, haz clic en "Iniciar"
+5. El tracker mostrara:
+   - Elixir estimado del rival
+   - Cartas conocidas de su mazo
+   - Que cartas tiene en mano (estimado)
+6. Cuando sea 2x o 3x elixir, cambia el modo
+7. Al terminar la partida, haz clic en "Reset"
+
+MODO MANUAL:
+Si la deteccion automatica no funciona bien, puedes marcar las cartas
+manualmente usando el dropdown "Input Manual" en la parte inferior.
+
+--------------------------------------------------------------------------------
+CALIBRACION (SI ES NECESARIO)
+--------------------------------------------------------------------------------
+
+Si la deteccion automatica no detecta cartas, puede que necesites
+calibrar la region de captura:
+
+1. Ejecuta: python main.py --calibrate
+2. Se mostrara tu pantalla
+3. Arrastra un rectangulo alrededor de la ventana de Clash Royale
+4. Presiona ENTER para confirmar
+5. Copia los valores mostrados a config.py
+
+--------------------------------------------------------------------------------
+SOLUCION DE PROBLEMAS
+--------------------------------------------------------------------------------
+
+Error: "python no se reconoce como comando"
+-> Reinstala Python y asegurate de marcar "Add Python to PATH"
+
+Error: "No module named cv2/mss/etc"
+-> Ejecuta: pip install -r requirements.txt
+
+La deteccion no funciona:
+-> Asegurate de tener imagenes de cartas en la carpeta "cards/"
+-> Las imagenes deben ser del tamano correcto (~64x76 pixeles)
+-> Prueba el modo manual: python main.py --manual
+
+El tracker va muy lento:
+-> Cierra otras aplicaciones
+-> Reduce la resolucion de Clash Royale
+-> Ajusta capture_fps en config.py (por defecto 10)
+
+--------------------------------------------------------------------------------
+ESTRUCTURA DEL PROYECTO
+--------------------------------------------------------------------------------
+
+clash_royale_tracker/
+├── main.py          # Programa principal (ejecuta este)
+├── capture.py       # Captura de pantalla
+├── detector.py      # Deteccion de cartas
+├── tracker.py       # Logica de elixir y ciclo
+├── gui.py           # Interfaz grafica
+├── config.py        # Configuraciones y datos de cartas
+├── requirements.txt # Lista de dependencias
+├── INSTALL.txt      # Este archivo
+└── cards/           # Imagenes de cartas para deteccion
+    ├── knight.png
+    ├── fireball.png
+    └── ...
+
+--------------------------------------------------------------------------------
+NOTAS IMPORTANTES
+--------------------------------------------------------------------------------
+
+- Este tracker es para uso personal y educativo
+- La deteccion automatica puede no ser 100% precisa
+- El elixir mostrado es una ESTIMACION, no el valor real
+- El tracker funciona mejor si juegas con la ventana en una posicion fija
+- Usar herramientas de terceros puede violar los ToS de Supercell
+
+================================================================================
+                    Buena suerte en la arena!
+================================================================================
